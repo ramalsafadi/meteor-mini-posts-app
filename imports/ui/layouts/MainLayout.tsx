@@ -92,7 +92,6 @@ const Footer = styled.footer`
   position: fixed;
   bottom: 10px;
   padding-top: ${({ theme }) => theme.spacing.xl};
-
   color: ${({ theme }) => theme.colors.textSecondary};
   font-size: ${({ theme }) => theme.fonts.sizes.caption};
 `;

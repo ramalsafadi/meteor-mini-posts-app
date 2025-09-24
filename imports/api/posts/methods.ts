@@ -10,9 +10,6 @@ import {
 } from './schema';
 
 Meteor.methods({
-  /**
-   * Method: 'posts.insert' (Now async)
-   */
   async 'posts.insert'(params: InsertPostParams) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized', 'You must be logged in to create a post.');
@@ -30,9 +27,6 @@ Meteor.methods({
     return postId;
   },
 
-  /**
-   * Method: 'posts.update' (Now async)
-   */
   async 'posts.update'(params: UpdatePostParams) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized', 'You must be logged in to update a post.');
@@ -42,10 +36,16 @@ Meteor.methods({
 
     const { _id, title, body } = params;
 
-    const post = await PostsCollection.findOneAsync({ _id, userId: this.userId });
-
+    const post = await PostsCollection.findOneAsync({ _id });
     if (!post) {
-      throw new Meteor.Error('not-found', 'The post was not found or you do not have permission to edit it.');
+      throw new Meteor.Error('not-found', 'The post was not found.');
+    }
+
+    const user = await Meteor.users.findOneAsync(this.userId);
+    const isAdmin = user?.roles?.includes('admin');
+
+    if (post.userId !== this.userId && !isAdmin) {
+      throw new Meteor.Error('not-authorized', 'You do not have permission to edit this post.');
     }
 
     const updates: { title?: string; body?: string; updatedAt: Date } = {
@@ -57,9 +57,6 @@ Meteor.methods({
     await PostsCollection.updateAsync(_id, { $set: updates });
   },
 
-  /**
-   * Method: 'posts.remove' (Now async)
-   */
   async 'posts.remove'(params: RemovePostParams) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized', 'You must be logged in to remove a post.');
@@ -69,10 +66,16 @@ Meteor.methods({
 
     const { _id } = params;
 
-    const post = await PostsCollection.findOneAsync({ _id, userId: this.userId });
-
+    const post = await PostsCollection.findOneAsync({ _id });
     if (!post) {
-      throw new Meteor.Error('not-found', 'The post was not found or you do not have permission to remove it.');
+      throw new Meteor.Error('not-found', 'The post was not found.');
+    }
+
+    const user = await Meteor.users.findOneAsync(this.userId);
+    const isAdmin = user?.roles?.includes('admin');
+
+    if (post.userId !== this.userId && !isAdmin) {
+      throw new Meteor.Error('not-authorized', 'You do not have permission to remove this post.');
     }
     
     await PostsCollection.removeAsync(_id);

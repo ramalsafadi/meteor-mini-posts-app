@@ -25,9 +25,9 @@ export const Button = styled.button<ButtonProps>`
     switch (variant) {
       case 'destructive':
         return css`
-          background-color: ${theme.colors.error};
-          color: ${theme.colors.surface};
-          border-color: ${theme.colors.error};
+          background-color: ${theme.colors.surface};
+          color: ${theme.colors.error};
+          border-color: ${theme.colors.surface};
         `;
       case 'secondary':
         return css`
