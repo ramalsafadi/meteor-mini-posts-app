@@ -1,0 +1,190 @@
+MINI POSTS APP - DESIGN SPECIFICATIONS
+=====================================
+
+PROJECT OVERVIEW
+-----------------
+This document contains comprehensive design specifications for the Mini Posts App, a modern web application for creating, editing, viewing, and managing personal posts. The design follows 2025 UI/UX trends with a focus on clean aesthetics, responsive design, and optimal user experience across desktop, tablet, and mobile devices.
+
+COLOR PALETTE
+-------------
+Primary Colors:
+- Primary Accent: #007AFF (Vibrant blue for primary actions, links, and highlights)
+- Secondary Accent: #5AC8FA (Light blue for secondary actions or subtle accents)
+
+Text Colors:
+- Primary Text: #1C1C1E (Dark charcoal for main content)
+- Secondary Text: #8E8E93 (Medium gray for secondary information, labels)
+- Disabled Text/Placeholder: #C7C7CC (Light gray)
+
+Background Colors:
+- Primary Background: #F2F2F7 (Light gray for main app background)
+- Secondary Background: #FFFFFF (Pure white for cards, modals, and content areas)
+
+Border & Divider Colors:
+- Border/Divider: #E5E5EA (Very light gray)
+
+Semantic Colors:
+- Success: #34C759 (Green)
+- Warning: #FFCC00 (Yellow)
+- Error/Delete: #FF3B30 (Red)
+
+TYPOGRAPHY
+----------
+Font Family: Inter (Modern sans-serif typeface)
+Fallback: Roboto, SF Pro Display, system-ui, sans-serif
+
+Font Sizes:
+- H1 (Page Title): 28px, Bold (700)
+- H2 (Section Title): 22px, Semi-Bold (600)
+- H3 (Card Title): 18px, Medium (500)
+- Body Large: 16px, Regular (400)
+- Body Medium: 14px, Regular (400)
+- Caption/Small: 12px, Regular (400)
+
+Line Heights:
+- Headings: 1.2
+- Body Text: 1.5
+
+SPACING & LAYOUT
+----------------
+Base Grid Unit: 8px
+
+Common Spacing Values:
+- Small: 8px
+- Medium: 16px
+- Large: 24px
+- X-Large: 32px
+
+Container Padding:
+- Mobile: 16px
+- Tablet: 24px
+- Desktop: 32px
+
+Border Radius:
+- Cards/Containers: 8px
+- Buttons: 8px
+- Input Fields: 4px
+
+COMPONENT SPECIFICATIONS
+------------------------
+
+Buttons:
+- Height: 44px (optimal touch target)
+- Padding: 8px vertical, 16px horizontal
+- Border Radius: 8px
+- Font Size: 16px, Medium (500)
+
+Primary Button:
+- Background: #007AFF
+- Text Color: #FFFFFF
+- Hover State: Slight opacity reduction (0.9)
+
+Secondary Button:
+- Background: Transparent
+- Text Color: #007AFF
+- Border: 1px solid #007AFF
+- Hover State: Light blue background (#F0F8FF)
+
+Destructive Button:
+- Background: #FF3B30
+- Text Color: #FFFFFF
+- Hover State: Slight opacity reduction (0.9)
+
+Input Fields:
+- Height: 44px
+- Padding: 12px
+- Border: 1px solid #E5E5EA
+- Border Radius: 4px
+- Font Size: 16px, Regular (400)
+- Focus State: Border color changes to #007AFF
+
+Textarea:
+- Min Height: 120px
+- Padding: 12px
+- Border: 1px solid #E5E5EA
+- Border Radius: 4px
+- Font Size: 16px, Regular (400)
+- Resize: Vertical only
+- Focus State: Border color changes to #007AFF
+
+Cards:
+- Background: #FFFFFF
+- Border: 1px solid #E5E5EA (or subtle shadow)
+- Border Radius: 8px
+- Padding: 16px
+- Shadow: 0 2px 8px rgba(0, 0, 0, 0.1) (optional)
+
+RESPONSIVE BREAKPOINTS
+----------------------
+- Mobile: 320px - 767px
+- Tablet: 768px - 1023px
+- Desktop: 1024px and above
+
+SCREEN-SPECIFIC LAYOUTS
+-----------------------
+
+Desktop (1024px+):
+- Two-column layout for List page (sidebar + main content)
+- Centered form layouts with max-width constraints
+- Larger spacing and padding
+- Hover states for interactive elements
+
+Tablet (768px - 1023px):
+- Single-column layouts
+- Touch-optimized button sizes (minimum 44px)
+- Moderate spacing and padding
+- Optimized for both portrait and landscape orientations
+
+Mobile (320px - 767px):
+- Single-column layouts
+- Full-width elements with appropriate margins
+- Large touch targets (minimum 44px)
+- Compact spacing to maximize content visibility
+- Native mobile UI elements (status bar, home indicator)
+
+PAGE-SPECIFIC DIMENSIONS
+------------------------
+
+List Page:
+- Post card height: Auto (based on content)
+- Card spacing: 16px between cards
+- Action button width: Auto (based on text + 32px padding)
+- Create button: Full-width on mobile, fixed-width on desktop/tablet
+
+Create/Edit Pages:
+- Form max-width: 600px (desktop/tablet)
+- Title input height: 44px
+- Body textarea min-height: 120px
+- Button spacing: 16px between Cancel and Save buttons
+
+View Page:
+- Content max-width: 800px (desktop/tablet)
+- Title font-size: 28px (desktop/tablet), 24px (mobile)
+- Body font-size: 16px
+- Metadata font-size: 14px
+- Action button spacing: 16px between Edit and Delete
+
+ACCESSIBILITY CONSIDERATIONS
+-----------------------------
+- Minimum color contrast ratio: 4.5:1 for normal text, 3:1 for large text
+- Touch targets: Minimum 44px x 44px
+- Focus indicators: Visible outline or border change
+- Semantic HTML structure for screen readers
+- Alt text for any decorative images or icons
+
+INTERACTION STATES
+------------------
+- Hover: Subtle color or opacity changes
+- Active/Pressed: Slight scale reduction (0.98) or darker color
+- Focus: Blue outline or border (#007AFF)
+- Disabled: Reduced opacity (0.5) and gray colors
+- Loading: Skeleton loaders or spinners with smooth animations
+
+ANIMATION GUIDELINES
+--------------------
+- Transition Duration: 200-300ms for most interactions
+- Easing: ease-out for entrances, ease-in for exits
+- Page Transitions: Subtle fade or slide animations
+- Button Interactions: Quick scale or color transitions
+- Loading States: Smooth skeleton animations or spinners
+

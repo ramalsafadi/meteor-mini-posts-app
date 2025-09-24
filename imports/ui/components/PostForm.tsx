@@ -1,60 +1,56 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { Button, Input, Textarea } from './styled';
 
-const styles = {
-  form: {
-    display: 'flex',
-    flexDirection: 'column' as 'column',
-    gap: '15px',
-  },
-  label: {
-    fontWeight: 'bold',
-  },
-  input: {
-    padding: '10px',
-    fontSize: '1rem',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-  },
-  textarea: {
-    padding: '10px',
-    fontSize: '1rem',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    minHeight: '150px',
-    fontFamily: 'sans-serif',
-  },
-  button: {
-    padding: '10px 15px',
-    fontSize: '1rem',
-    backgroundColor: '#28a745',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    alignSelf: 'flex-start',
-  },
-  error: {
-    color: 'red',
-    marginTop: '5px',
-  },
-};
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.lg};
+  background: ${({ theme }) => theme.colors.surface};
+  padding: ${({ theme }) => theme.spacing.lg};
+  border-radius: ${({ theme }) => theme.radii.md};
+  box-shadow: ${({ theme }) => theme.shadows.card};
+  margin: 0 auto;
+`;
+
+const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.sm};
+`;
+
+const Label = styled.label`
+  font-weight: ${({ theme }) => theme.fonts.weights.medium};
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.md};
+  justify-content: flex-end;
+`;
+
+const ErrorMessage = styled.p`
+  color: ${({ theme }) => theme.colors.error};
+  margin: 0;
+`;
 
 interface PostFormProps {
-  post?: { 
+  post?: {
     _id: string;
     title: string;
     body: string;
   };
   onSave: (title: string, body: string) => void;
-  onCancel?: () => void; 
+  onCancel?: () => void;
 }
 
 export const PostForm: React.FC<PostFormProps> = ({ post, onSave, onCancel }) => {
+  // THIS IS THE LOGIC THAT WAS MISSING
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [error, setError] = useState('');
 
-  // This `useEffect` hook pre-fills the form if we are in "Edit" mode.
   useEffect(() => {
     if (post) {
       setTitle(post.title);
@@ -64,49 +60,30 @@ export const PostForm: React.FC<PostFormProps> = ({ post, onSave, onCancel }) =>
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // client-side validation
     if (!title || !body) {
       setError('Title and body are required.');
       return;
     }
-
     setError('');
     onSave(title, body);
   };
+  // END OF MISSING LOGIC
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      {error && <p style={styles.error}>{error}</p>}
-      <div>
-        <label htmlFor="title" style={styles.label}>Title</label>
-        <input
-          id="title"
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          style={styles.input}
-        />
-      </div>
-      <div>
-        <label htmlFor="body" style={styles.label}>Body</label>
-        <textarea
-          id="body"
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          style={styles.textarea}
-        />
-      </div>
-      <div>
-        <button type="submit" style={styles.button}>
-          {post ? 'Save Changes' : 'Create Post'}
-        </button>
-        {onCancel && (
-          <button type="button" onClick={onCancel} style={{...styles.button, backgroundColor: '#6c757d', marginLeft: '10px'}}>
-            Cancel
-          </button>
-        )}
-      </div>
-    </form>
+    <FormContainer onSubmit={handleSubmit}>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      <FormGroup>
+        <Label htmlFor="title">Title</Label>
+        <Input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="body">Body</Label>
+        <Textarea id="body" value={body} onChange={(e) => setBody(e.target.value)} />
+      </FormGroup>
+      <ButtonGroup>
+        {onCancel && <Button type="button" variant="secondary" onClick={onCancel}>Cancel</Button>}
+        <Button type="submit">{post ? 'Save Changes' : 'Create Post'}</Button>
+      </ButtonGroup>
+    </FormContainer>
   );
 };
