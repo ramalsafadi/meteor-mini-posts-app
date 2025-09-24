@@ -1,0 +1,8 @@
+{
+  "public": {
+    "appName": "Mini Posts App"
+  },
+  "private": {
+    "someApiSecret": "CHANGE_THIS_IN_PRODUCTION"
+  }
+}
