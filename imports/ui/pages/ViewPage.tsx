@@ -43,7 +43,16 @@ export const ViewPage = () => {
   });
 
   const handleDelete = () => {
-    // ... same handleDelete logic as before ...
+    if (window.confirm('Are you sure you want to delete this post?')) {
+      Meteor.call('posts.remove', { _id }, (error) => {
+        if (error) {
+          alert(`Error deleting post: ${error.reason}`);
+        } else {
+          // On success, redirect to the home page since this page no longer exists.
+          history.push('/');
+        }
+      });
+    }
   };
 
   const renderContent = () => {

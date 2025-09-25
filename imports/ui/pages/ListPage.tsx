@@ -21,7 +21,6 @@ const PostCard = styled(Card)`
   }
 `;
 
-// NEW: A wrapper for the clickable info part of the card
 const PostInfoLink = styled(Link)`
   text-decoration: none;
   flex-grow: 1; /* Allow this part to take up available space */
