@@ -92,3 +92,11 @@ This project was built using Meteor 3.0, which enforces asynchronous database op
 
 *   **React Router v5**: During initial setup, React Router v6 presented a module resolution issue with Meteor's build bundler. To ensure stability and focus on the core assignment requirements, I opted for React Router v5, which is a mature and fully compatible choice for this stack.
 *   **Custom React Auth Components**: Instead of using a legacy Blaze-based accounts UI, I built a lightweight set of React components for sign-in, sign-up, and user state. This maintains a pure React stack, avoids dependency conflicts (e.g., jQuery), and demonstrates the ability to integrate directly with Meteor's accounts system.
+
+### Design:
+please view the design documentation and UX files under ./design-UI
+
+### Roles:
+defult admin role:
+username: admin
+password: password
